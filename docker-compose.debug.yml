@@ -1,0 +1,31 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP.NET Core service.
+
+version: '3.4'
+
+services:
+  etllabsapi:
+    image: etllabsapi
+    build:
+      context: .
+      dockerfile: src/etl-labs.API/Dockerfile
+      args:
+        - configuration=Debug
+    ports:
+      - 5274:5274
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw
+  # eltlabshangfire:
+  #   image: eltlabshangfire
+  #   build: 
+  #     context: .
+  #     dockerfile: src/etl-labs.Hangfire/Dockerfile
+  #     args:
+  #       - configuration=Debug
+  #   ports:
+  #     - 5126:5126
+  #   environment:
+  #     - ASPNETCORE_ENVIRONMENT=Development
+  #   volumes:
+  #     - ~/.vsdbg:/remote_debugger:rw

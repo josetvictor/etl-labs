@@ -1,4 +1,11 @@
+using etl_labs.Hangfire.Domain.Interfaces;
+using etl_labs.Hangfire.Integration;
+using etl_labs.Hangfire.Integration.Interfaces;
+using etl_labs.Hangfire.Jobs;
+using etl_labs.Hangfire.Queue;
+
 using Hangfire;
+using Hangfire.Common;
 using Hangfire.MemoryStorage;
 
 using HangfireBasicAuthenticationFilter;
@@ -15,6 +22,11 @@ builder.Services.AddSwaggerGen();
 // Inicio da configuração no service - HANGFIRE
 builder.Services.AddHangfire(config => config.UseMemoryStorage());
 // Fim da Configuração no service - HANGFIRE
+
+// Configuração da injeção de dependencia de Jobs, Queues e Integrations
+builder.Services.AddScoped<ITopFiveIntegration, TopFiveIntegration>();
+builder.Services.AddScoped<ITopFiveQueue, TopFiveQueue>();
+builder.Services.AddScoped<IJobTopFive, FiveJob>();
 
 var app = builder.Build();
 
@@ -46,6 +58,18 @@ app.UseHangfireDashboard("/hangfire", new DashboardOptions()
     }
 });
 // Fim da configuração no App - HANGFIRE
+
+// Execução do Job - Inicio
+
+var jobFive = builder.Services.BuildServiceProvider().GetService<IJobTopFive>();
+
+RecurringJob.AddOrUpdate(
+    () => jobFive.StartJob(),
+    Cron.Daily,
+    TimeZoneInfo.Utc
+);
+
+// Execução do Job - Fim
 
 app.MapControllers();
 

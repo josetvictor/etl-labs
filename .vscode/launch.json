@@ -1,7 +1,56 @@
 {
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-  "version": "0.2.0",
-  "configurations": []
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Docker .NET Attach (Preview)",
+            "type": "docker",
+            "request": "attach",
+            "platform": "netCore",
+            "sourceFileMap": {
+                "/src": "${workspaceFolder}"
+            }
+        },
+        {
+            "name": "etl-labs.API",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-etl-labs.API",
+            "program": "${workspaceFolder}/src/etl-labs.API/bin/Debug/net7.0/etl-labs.API.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/etl-labs.API",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+http://\\S+:([0-9]+)",
+                "uriFormat": "http://localhost:%s/swagger/index.html"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/src/etl-labs.API/Views"
+            }
+        },
+        {
+            "name": "etl-labs.Hangfire",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-etl-labs.Hangfire",
+            "program": "${workspaceFolder}/src/etl-labs.Hangfire/bin/Debug/net7.0/etl-labs.Hangfire.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/etl-labs.Hangfire",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+http://\\S+:([0-9]+)",
+                "uriFormat": "http://localhost:%s/hangfire"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/src/etl-labs.Hangfire/Views"
+            }
+        }
+    ]
 }

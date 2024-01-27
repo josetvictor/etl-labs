@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  etl-labs-api:
+    container_name: etl-labs-api
+    build:
+      context: ./src/etl-labs.API
+      dockerfile: Dockerfile
+    ports:
+      - "5274:5274"
