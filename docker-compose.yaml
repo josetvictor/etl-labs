@@ -1,0 +1,6 @@
+version: '3.4'
+services:
+  etlapi:
+    build: src/etl-labs.API
+    ports:
+      - "8080:32041"
