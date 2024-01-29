@@ -15,4 +15,4 @@ RUN dotnet publish -c Release -o dist
 FROM mcr.microsoft.com/dotnet/aspnet:7.0
 WORKDIR /app/dist
 COPY --from=build-env /app/dist .
-ENTRYPOINT ["dotnet", "etl-labs.API.dll"]
+ENTRYPOINT ["dotnet", "etl-labs.Hangfire.dll"]

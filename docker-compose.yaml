@@ -1,6 +1,15 @@
 version: '3.4'
+
 services:
   etlapi:
-    build: src/etl-labs.API
+    build:
+      context: .
+      dockerfile: ./src/etl-labs.API/Dockerfile
     ports:
-      - "8080:32041"
+      - "5126:80"
+  etlhangfire:
+    build:
+      context: .
+      dockerfile: ./src/etl-labs.Hangfire/Dockerfile
+    ports:
+      - "5274:80"

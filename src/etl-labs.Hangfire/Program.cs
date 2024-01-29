@@ -31,45 +31,45 @@ builder.Services.AddScoped<IJobTopFive, FiveJob>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-}
 
-app.UseHttpsRedirection();
+    // Inicio da configuração no APP - HANGFIRE
+    app.UseHangfireServer();
 
-app.UseAuthorization();
-
-// Inicio da configuração no APP - HANGFIRE
-app.UseHangfireServer();
-
-app.UseHangfireDashboard("/hangfire", new DashboardOptions()
-{
-    AppPath = null,
-    DashboardTitle = "Hangfire Dashboard Sample",
-    Authorization = new[]
+    app.UseHangfireDashboard("/hangfire", new DashboardOptions()
     {
+        AppPath = null,
+        DashboardTitle = "Hangfire Dashboard Sample",
+        Authorization = new[]
+        {
         new HangfireCustomBasicAuthenticationFilter
         {
             User = "dev",
             Pass = "123"
         },
     }
-});
-// Fim da configuração no App - HANGFIRE
+    });
+    // Fim da configuração no App - HANGFIRE
 
-// Execução do Job - Inicio
+    // Execução do Job - Inicio
 
-var jobFive = builder.Services.BuildServiceProvider().GetService<IJobTopFive>();
+    var jobFive = builder.Services.BuildServiceProvider().GetService<IJobTopFive>();
 
-RecurringJob.AddOrUpdate(
-    () => jobFive.StartJob(),
-    Cron.Daily,
-    TimeZoneInfo.Utc
-);
+    RecurringJob.AddOrUpdate(
+        () => jobFive.StartJob(),
+        Cron.Daily,
+        TimeZoneInfo.Utc
+    );
 
-// Execução do Job - Fim
+    // Execução do Job - Fim
+}
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
 
 app.MapControllers();
 
