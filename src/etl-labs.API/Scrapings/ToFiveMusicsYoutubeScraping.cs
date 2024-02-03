@@ -18,7 +18,10 @@ public class ToFiveMusicsYoutubeScraping
     {
         try
         {
-            using (var driver = new ChromeDriver())
+            var options = new ChromeOptions();
+            options.AddArgument("--headless");
+
+            using (var driver = new ChromeDriver(options))
             {
                 driver.Navigate().GoToUrl(_url);
 

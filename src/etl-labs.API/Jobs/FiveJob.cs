@@ -1,6 +1,6 @@
-using etl_labs.Hangfire.Domain.Interfaces;
+using etl_labs.API.Domain.Interfaces;
 
-namespace etl_labs.Hangfire.Jobs;
+namespace etl_labs.API.Jobs;
 
 public class FiveJob : IJobTopFive
 {

@@ -7,8 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EAEB5729-2DD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "etl-labs.API", "src\etl-labs.API\etl-labs.API.csproj", "{DA8A3E15-76A4-48E7-B6EB-FAACA868E9F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "etl-labs.Hangfire", "src\etl-labs.Hangfire\etl-labs.Hangfire.csproj", "{1A29C102-DD5E-49A1-BAF0-5985990CFAEB}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,13 +20,8 @@ Global
 		{DA8A3E15-76A4-48E7-B6EB-FAACA868E9F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA8A3E15-76A4-48E7-B6EB-FAACA868E9F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA8A3E15-76A4-48E7-B6EB-FAACA868E9F9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1A29C102-DD5E-49A1-BAF0-5985990CFAEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A29C102-DD5E-49A1-BAF0-5985990CFAEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1A29C102-DD5E-49A1-BAF0-5985990CFAEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1A29C102-DD5E-49A1-BAF0-5985990CFAEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{DA8A3E15-76A4-48E7-B6EB-FAACA868E9F9} = {EAEB5729-2DD5-4E45-A484-CF96DA69C484}
-		{1A29C102-DD5E-49A1-BAF0-5985990CFAEB} = {EAEB5729-2DD5-4E45-A484-CF96DA69C484}
 	EndGlobalSection
 EndGlobal

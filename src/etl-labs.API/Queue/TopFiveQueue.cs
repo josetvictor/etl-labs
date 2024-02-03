@@ -1,7 +1,7 @@
-using etl_labs.Hangfire.Domain.Interfaces;
-using etl_labs.Hangfire.Integration.Interfaces;
+using etl_labs.API.Domain.Interfaces;
+using etl_labs.API.Integration.Interfaces;
 
-namespace etl_labs.Hangfire.Queue;
+namespace etl_labs.API.Queue;
 
 public class TopFiveQueue : ITopFiveQueue
 {

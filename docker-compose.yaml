@@ -7,9 +7,9 @@ services:
       dockerfile: ./src/etl-labs.API/Dockerfile
     ports:
       - "5126:80"
-  etlhangfire:
-    build:
-      context: .
-      dockerfile: ./src/etl-labs.Hangfire/Dockerfile
-    ports:
-      - "5274:80"
+  # etlhangfire:
+  #   build:
+  #     context: .
+  #     dockerfile: ./src/etl-labs.Hangfire/Dockerfile
+  #   ports:
+  #     - "5274:80"

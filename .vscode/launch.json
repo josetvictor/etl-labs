@@ -21,27 +21,6 @@
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/src/etl-labs.API/Views"
             }
-        },
-        {
-            "name": "etl-labs.Hangfire",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "build-etl-labs.Hangfire",
-            "program": "${workspaceFolder}/src/etl-labs.Hangfire/bin/Debug/net7.0/etl-labs.Hangfire.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/src/etl-labs.Hangfire",
-            "stopAtEntry": false,
-            "serverReadyAction": {
-                "action": "openExternally",
-                "pattern": "\\bNow listening on:\\s+http://\\S+:([0-9]+)",
-                "uriFormat": "http://localhost:%s/hangfire"
-            },
-            "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development"
-            },
-            "sourceFileMap": {
-                "/Views": "${workspaceFolder}/src/etl-labs.Hangfire/Views"
-            }
         }
     ]
 }

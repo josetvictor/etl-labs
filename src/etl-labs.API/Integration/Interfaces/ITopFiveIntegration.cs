@@ -1,4 +1,4 @@
-namespace etl_labs.Hangfire.Integration.Interfaces;
+namespace etl_labs.API.Integration.Interfaces;
 
 public interface ITopFiveIntegration
 {
