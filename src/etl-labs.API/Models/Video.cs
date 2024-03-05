@@ -1,4 +1,4 @@
-namespace etl_labs.API;
+namespace etl_labs.API.Models;
 
 public class Video
 {
