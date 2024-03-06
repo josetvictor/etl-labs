@@ -15,28 +15,24 @@ public class ToFiveMusicsYoutubeScraping
         _url = "https://www.youtube.com/feed/trending?bp=4gINGgt5dG1hX2NoYXJ0cw%3D%3D";
     }
 
-    public List<Video> topVideos = new List<Video>();
-    public void Scraping()
+    public List<Video> Scraping()
     {
         try
         {
+            var topVideos = new List<Video>();
             var options = new ChromeOptions();
             options.AddArgument("--headless");
-            Console.WriteLine("ChromeOptions configurado");
 
             using (var driver = new ChromeDriver(options))
             {
                 driver.Navigate().GoToUrl(_url);
-                Console.WriteLine("Navegando para a pagina");
 
                 // TO DO: raspagem dos filmes
                 var divContentVideos = driver.FindElement(By.Id("contents"));
                 var listTopFive = divContentVideos.FindElements(By.ClassName("text-wrapper"));
-                topVideos.Clear();
 
                 Task.Delay(1000);
 
-                Console.WriteLine("Montando lista de dados");
                 for(int i = 0; i < 5; i++)
                 {
                     var ancora = listTopFive[i].FindElement(By.Id("video-title"));
@@ -47,20 +43,15 @@ public class ToFiveMusicsYoutubeScraping
                         Link = ancora.GetDomProperty("href")
                     });
                 }
-                Console.WriteLine("Lista de dados salva");
 
                 driver.Quit();
-                Console.WriteLine("Fechando navegador");
+
+                return topVideos;
             }
         }
         catch (Exception err)
         {
             throw new Exception(err.Message);
         }
-    }
-
-    internal string Scraping(object current)
-    {
-        throw new NotImplementedException();
     }
 }

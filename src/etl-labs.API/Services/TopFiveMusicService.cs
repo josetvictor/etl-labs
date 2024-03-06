@@ -1,41 +1,30 @@
 ﻿using etl_labs.API.Models;
+using etl_labs.API.Repository;
 using etl_labs.API.Scrapings;
 
 using Hangfire;
-using Hangfire.Server;
 
 namespace etl_labs.API;
 
-public class TopFiveMusicService : IHostedService
+public class TopFiveMusicService
 {
+    private readonly ITopFiveRepository _repository;
     private readonly ToFiveMusicsYoutubeScraping _crawler;
-    public TopFiveMusicService(ToFiveMusicsYoutubeScraping crawler)
+    public TopFiveMusicService(ITopFiveRepository repository)
     {
-        _crawler = crawler;
-    }
-
-    public async Task StartAsync(CancellationToken cancellationToken)
-    {
-        await JobHangfire();
-    }
-
-    private async Task JobHangfire()
-    {
-        RecurringJob.AddOrUpdate("Job recorrente de raspagem do top 5 Youtube Brasil da semana", () => _crawler.Scraping(), Util.CronExpression("12", "15"));
-    }
-
-    public Task StopAsync(CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
+        _crawler = new ToFiveMusicsYoutubeScraping();
+        _repository = repository;
     }
 
     public List<Video> getTopFiveYoutube()
     {
-        return _crawler.topVideos;
+        return _repository.getTopFiveYoutube();
     }
 
-    public void postTopFiveYoutube()
+    public string postTopFiveYoutube()
     {
-        _crawler.Scraping();
+        var videos = _crawler.Scraping();
+        
+        return _repository.postTopFiveYoutube(videos);
     }
 }

@@ -1,4 +1,5 @@
 using etl_labs.API.Models;
+using etl_labs.API.Repository;
 using etl_labs.API.Scrapings;
 
 using Microsoft.AspNetCore.Mvc;
@@ -9,24 +10,16 @@ namespace etl_labs.API.Controllers;
 [Route("[controller]")]
 public class TopFiveController : ControllerBase
 {
-    private readonly ILogger<TopFiveController> _logger;
     private readonly TopFiveMusicService _service;
 
-    public TopFiveController(ILogger<TopFiveController> logger, TopFiveMusicService service)
+    public TopFiveController(ITopFiveRepository repository)
     {
-        _logger = logger;
-        _service = service;
+        _service = new TopFiveMusicService(repository);
     }
 
-    [HttpGet(Name = "ToFiveMusicsYoutubeScraping")]
+    [HttpGet("TopFiveYoutube")]
     public List<Video> Get()
     {
         return _service.getTopFiveYoutube();
-    }
-
-    [HttpPost(Name = "ToFiveMusicsYoutubeScraping")]
-    public void Post()
-    {
-        _service.postTopFiveYoutube();
     }
 }
