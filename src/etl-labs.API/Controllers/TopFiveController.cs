@@ -17,7 +17,7 @@ public class TopFiveController : ControllerBase
         _service = new TopFiveMusicService(repository);
     }
 
-    [HttpGet("TopFiveYoutube")]
+    [HttpGet()]
     public List<Video> Get()
     {
         return _service.getTopFiveYoutube();

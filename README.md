@@ -1,25 +1,29 @@
-# Template DotNet Labs
+# ETL Labs
 
 ## Overview
 
-Learn time: This will template to quickly start new labs or PoCs.
+Learn time: Using Hangfire to scraping in background API.
 
 ## Context 
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+The goal of this PoC is to better understand the use of recurring services in background in ASP.NET Core APIs. As a result, a ETL was built that runs a service once a week and extracts the top 5 most listened music on youtube. In addition to the concept of services in the background, the construction of a Web Scraping using the selenium on the .NET platform is also explored.
 
+**ETL:** Is a data integration process that Extracts, Transforms, and Loads data from various data storage sources;
+
+**Scraping:** Is a process of extracting data from a specific source;
 
 ## Key Features
 
  - .NET 7.0
  - C#
- - XUnit
- - [Lorem Ipsum](https://loremipsum.io/)
+ - [Hangfire](https://www.hangfire.io/)
+ - [Selenium](https://www.selenium.dev/)
 
  
 ## TODO
 
-- [ ] Lorem ipsum dolor sit amet
+- [ ] Implement logging in Hangfire dashboard
+- [ ] Implement authentication for Hangfire dashboard
 
 ## Compatible IDEs
 
@@ -31,21 +35,14 @@ Tested on:
 
 From the terminal/shell/command line tool, use the following commands to build, test and run the API.
 
-- ### Build the project
+### Run the application
 
 ```shell
-dotnet build
+# Run the application.
+dotnet run --project ./src/etl-labs.API
 ```
 
-- ### Run the tests
-
 ```shell
-dotnet test
-```
-
-- ### Run the application
-
-```shell
-# Run the application which will be listening on port `5099`.
-dotnet run --project <<PROJECT_PATH>>
+# Run the application on Docker
+docker compose up -d
 ```
